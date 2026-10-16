@@ -4,17 +4,23 @@
  Mats de Greef
  David Orozco Escobar
  Xueting Lin
+ 
+ Hug the bears so they don't run over the crops and get hearts!
+ If you miss more than 16 you lose!
+ Press D to buy wall for 15 hearts.
  */
-
 
 final color DIRT_BROWN = color(140, 90, 40);
 
 Plot [][] plots;
-Teddy bear;
 Farm farm;
-Farmer theFarmer;
-HealthBar healthBar;
+
 Hearts hearthBar;
+HealthBar healthBar;
+
+Teddy bear;
+Farmer theFarmer;
+
 
 void setup() {
   size(960, 540);

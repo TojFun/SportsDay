@@ -83,7 +83,7 @@ class Farm { // This is the main class of the game, where all variables are.
     float offset = 100;
 
     // Choose a random side of the screen
-    int side = int(random(4));
+    int side = round(random(4));
 
     switch (side) {
     case 0: // Top
@@ -142,6 +142,7 @@ class Farm { // This is the main class of the game, where all variables are.
     }
     return false;
   }
+
   boolean sideIsOpen(Plot plot, int side) {
     if (side == 0) return !hasPlot(plot.x, plot.y - plot.height);
     if (side == 1) return !hasPlot(plot.x, plot.y + plot.height);
