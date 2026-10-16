@@ -5,6 +5,8 @@ class Farm {
 
   ArrayList<Plot> plots;
   ArrayList<Teddy> bears = new ArrayList<Teddy>();
+  FloatDict wallHealth = new FloatDict();
+  float wallThickness = 8;
 
   Farm(int xInit, int yInit) {
     x = xInit;
@@ -42,8 +44,9 @@ class Farm {
     for (int i = bears.size() - 1; i >= 0; i--) {
       Teddy bear = bears.get(i);
 
-      bear.move(this, farmer);
-      if (!bears.contains(bear)) {
+      if (bear.leaving || !attackWall(bear)) {
+        bear.move(this, farmer);
+      }      if (!bears.contains(bear)) {
         continue;
       }
 
@@ -97,26 +100,19 @@ class Farm {
     bears.add(bear);
   }
 
-  void displayDefenses() {
-    float t = 8;
-
+    void displayDefenses() {
     pushStyle();
     rectMode(CORNER);
     stroke(0);
-    fill(110, 110, 130);
 
     for (Plot plot : plots) {
-      if (!hasPlot(plot.x, plot.y - plot.height)) {
-        rect(plot.x - t, plot.y - t, plot.width + 2*t, t);
-      }
-      if (!hasPlot(plot.x, plot.y + plot.height)) {
-        rect(plot.x - t, plot.y + plot.height, plot.width + 2*t, t);
-      }
-      if (!hasPlot(plot.x - plot.width, plot.y)) {
-        rect(plot.x - t, plot.y, t, plot.height);
-      }
-      if (!hasPlot(plot.x + plot.width, plot.y)) {
-        rect(plot.x + plot.width, plot.y, t, plot.height);
+      for (int side = 0; side < 4; side++) {
+        if (!sideIsOpen(plot, side)) continue;
+        if (getWallHealth(wallKey(plot, side)) <= 0) continue;
+
+        float[] w = wallRect(plot, side);
+        fill(lerpColor(color(30, 30, 40), color(110, 110, 130), getWallHealth(wallKey(plot, side)) / 100));
+        rect(w[0], w[1], w[2], w[3]);
       }
     }
 
@@ -126,6 +122,49 @@ class Farm {
   boolean hasPlot(float px, float py) {
     for (Plot other : plots) {
       if (abs(other.x - px) < 1 && abs(other.y - py) < 1) return true;
+    }
+    return false;
+  }
+    boolean sideIsOpen(Plot plot, int side) {
+    if (side == 0) return !hasPlot(plot.x, plot.y - plot.height);
+    if (side == 1) return !hasPlot(plot.x, plot.y + plot.height);
+    if (side == 2) return !hasPlot(plot.x - plot.width, plot.y);
+    return !hasPlot(plot.x + plot.width, plot.y);
+  }
+
+  float[] wallRect(Plot plot, int side) {
+    float t = wallThickness;
+    if (side == 0) return new float[] {plot.x - t, plot.y - t, plot.width + 2*t, t};
+    if (side == 1) return new float[] {plot.x - t, plot.y + plot.height, plot.width + 2*t, t};
+    if (side == 2) return new float[] {plot.x - t, plot.y, t, plot.height};
+    return new float[] {plot.x + plot.width, plot.y, t, plot.height};
+  }
+
+  String wallKey(Plot plot, int side) {
+    return int(plot.x) + "," + int(plot.y) + "," + side;
+  }
+
+  float getWallHealth(String key) {
+    if (!wallHealth.hasKey(key)) wallHealth.set(key, 100);
+    return wallHealth.get(key);
+  }
+
+  boolean attackWall(Teddy bear) {
+    float r = 60 * bear.scale;
+
+    for (Plot plot : plots) {
+      for (int side = 0; side < 4; side++) {
+        if (!sideIsOpen(plot, side)) continue;
+
+        String key = wallKey(plot, side);
+        if (getWallHealth(key) <= 0) continue;
+
+        float[] w = wallRect(plot, side);
+        if (bear.x > w[0] - r && bear.x < w[0] + w[2] + r && bear.y > w[1] - r && bear.y < w[1] + w[3] + r) {
+          wallHealth.sub(key, 0.5);
+          return true;
+        }
+      }
     }
     return false;
   }
