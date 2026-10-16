@@ -39,6 +39,12 @@ void draw() {
 
   farm.spawnBears(frameCount, theFarmer);
 
+  if (farm.health <= 0) {
+    gameOver();
+    noLoop();
+    return;
+  }
+
   if (!farm.isHugging()) {
     theFarmer.display();
   }
@@ -50,6 +56,22 @@ void mousePressed() {
   if (!farm.isHugging()) {
     theFarmer.hugBear();
     theFarmer.isWalking = true;
+  }
+}
+
+void gameOver() {
+  fill(0, 0, 0, 60);
+  rect(0, 0, width, height);
+
+  fill(255, 0, 0);
+  textAlign(CENTER, CENTER);
+  textSize(70);
+  text("GAME OVER", width/2, height/2);
+}
+
+void keyPressed() {
+  if (key == 'd' || key == 'D') {
+    farm.buyDefense();
   }
 }
 

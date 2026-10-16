@@ -21,6 +21,10 @@ class Farm {
   }
 
   void buyDefense() {
+    if (hearts > 15 && defenses == 0) {
+      hearts -= 15;
+      defenses = 1;
+    }
   }
 
   void buyPlot(Plot plot) {
@@ -55,7 +59,8 @@ class Farm {
 
       if (bear.leaving || !attackWall(bear)) {
         bear.move(this, farmer);
-      }      if (!bears.contains(bear)) {
+      }
+      if (!bears.contains(bear)) {
         continue;
       }
 
@@ -109,7 +114,9 @@ class Farm {
     bears.add(bear);
   }
 
-    void displayDefenses() {
+  void displayDefenses() {
+    if (defenses == 0) return;
+
     pushStyle();
     rectMode(CORNER);
     stroke(0);
@@ -134,7 +141,7 @@ class Farm {
     }
     return false;
   }
-    boolean sideIsOpen(Plot plot, int side) {
+  boolean sideIsOpen(Plot plot, int side) {
     if (side == 0) return !hasPlot(plot.x, plot.y - plot.height);
     if (side == 1) return !hasPlot(plot.x, plot.y + plot.height);
     if (side == 2) return !hasPlot(plot.x - plot.width, plot.y);
@@ -159,6 +166,8 @@ class Farm {
   }
 
   boolean attackWall(Teddy bear) {
+    if (defenses == 0) return false;
+
     float r = 60 * bear.scale;
 
     for (Plot plot : plots) {
