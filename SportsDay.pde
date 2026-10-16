@@ -3,11 +3,14 @@ Teddy bear;
 Farm farm;
 Farmer theFarmer;
 HealthBar healthBar;
+Hearts hearthBar;
 
 void setup() {
-  size(960, 540);
+size(960, 540);
 
   farm = new Farm(width /2, height/2);
+  hearthBar = new Hearts(40, 50, 200, 20, 5);
+
 
   theFarmer = new Farmer(width/2, height/2);
   healthBar = new HealthBar(width/100, height/50, width/4, height/30);
@@ -24,9 +27,8 @@ void draw() {
     }
   }
 
-  theFarmer.display();
-  theFarmer.update();
-  healthBar.display();
+
+    healthBar.display();
 
   theFarmer.display();
   theFarmer.update();
