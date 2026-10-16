@@ -21,12 +21,19 @@ class Teddy {
     color yellow = #FFDFA0;
     color black = #3E2207;
     color white = #FAEDE1;
-
+  
+  float bearSpeed;
+  float stepHeight = 4;
+  bearSpeed += 0.2;
+  
+  float walk1 = sin(bearSpeed)*stepHeight;
+  float walk2 = cos(bearSpeed)*stepHeight;
+  
     fill(brown);
-    rect(-56, -10, 32, 83, 8, 8, 8, 8);    //leftest leg
-    rect(-44, -10, 32, 83, 8, 8, 8, 8);    //left leg
-    rect(12, -10, 32, 83, 8, 8, 8, 8);   //right leg
-    rect(26, -10, 32, 83, 8, 8, 8, 8);   //rightest leg
+    rect(-56, -10 + walk1, 32, 83, 8, 8, 8, 8);    //leftest leg
+    rect(-44, -10 + walk2, 32, 83, 8, 8, 8, 8);    //left leg
+    rect(12, -10 + walk1, 32, 83, 8, 8, 8, 8);   //right leg
+    rect(26, -10 + walk2, 32, 83, 8, 8, 8, 8);   //rightest leg
     circle(67, -26, 33);
 
     ellipse(0, 0, 137, 90);      //body
