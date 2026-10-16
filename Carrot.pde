@@ -8,6 +8,7 @@ class Carrot extends Plant {
   }
 
   void display() {
+
     noStroke();
 
     // orange part

@@ -40,11 +40,11 @@ class Plot {
   }
 
   void initCarrots() {
-    float rowY = y + height/9;
+    float centerX = x + width/2, centerY = y + height/2.5;
 
-    plants[0][0] = new Carrot(x - width/9, rowY, 0.25);
-    plants[0][1] = new Carrot(x + width/9, rowY, 0.25);
-    plants[1][0] = new Carrot(x - width/9, rowY+height/4, 0.25);
-    plants[1][1] = new Carrot(x + width/9, rowY+height/4, 0.25);
+    plants[0][0] = new Carrot(centerX - width / 5, centerY - height / 4, 0.25);
+    plants[0][1] = new Carrot(centerX + width / 5, centerY - height / 4, 0.25);
+    plants[1][0] = new Carrot(centerX - width / 5, centerY + height / 4, 0.25);
+    plants[1][1] = new Carrot(centerX + width / 5, centerY + height / 4, 0.25);
   }
 }
