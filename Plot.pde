@@ -8,6 +8,9 @@ class Plot {
   final color BROWN = color(140, 90, 40),
     DARKBROWN = color(120, 80, 30);
 
+  color background;
+
+
   Plot(float x, float y, float width, float height, boolean canBeBought, boolean isFarmPlot) {
     this.x = x * width;
     this.y = y * height;
@@ -15,10 +18,10 @@ class Plot {
     this.width = width;
     this.height = height;
 
-
     this.canBeBought = canBeBought;
     this.isFarmPlot = isFarmPlot;
 
+    background = isFarmPlot ? DARKBROWN : color(random(75, 90), random(125, 145), random(45, 60));
     initCarrots();
   }
 
@@ -26,8 +29,7 @@ class Plot {
     pushMatrix();
     pushStyle();
 
-    fill(255%x, 255%y, 255);
-    if (isFarmPlot) fill(DARKBROWN);
+    fill(background);
     rect(x, y, width, height);
 
     if (isFarmPlot) {
