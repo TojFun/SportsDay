@@ -22,7 +22,7 @@ class Teddy {
     translate(x, y);
     scale(scale);
   
-  float bearSpeed;
+  float bearSpeed = 0;
   float stepHeight = 4;
   bearSpeed += 0.2;
   
