@@ -1,6 +1,7 @@
 class Teddy {
   float x, y, scale;
   int speed;
+  float stepSpeed = 0;
   color brown = #A5674B;
   color yellow = #FFDFA0;
   color black = #3E2207;
@@ -22,12 +23,11 @@ class Teddy {
     translate(x, y);
     scale(scale);
   
-  float bearSpeed = 0;
   float stepHeight = 4;
-  bearSpeed += 0.2;
+  stepSpeed += 0.2;
   
-  float walk1 = sin(bearSpeed)*stepHeight;
-  float walk2 = cos(bearSpeed)*stepHeight;
+  float walk1 = sin(stepSpeed)*stepHeight;
+  float walk2 = cos(stepSpeed)*stepHeight;
   
     fill(brown);
     rect(-56, -10 + walk1, 32, 83, 8, 8, 8, 8);    //leftest leg
