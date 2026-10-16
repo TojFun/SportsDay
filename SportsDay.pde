@@ -30,7 +30,7 @@ void draw() {
   }
 
 
-  healthBar.display();
+  healthBar.display(farm.health);
 
   theFarmer.display();
   theFarmer.update();
