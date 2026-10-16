@@ -22,18 +22,18 @@ class Teddy {
     pushMatrix();
 
     translate(x, y);
-    if(backwards) {
+    if (backwards) {
       scale(-1, 1);
-    } else{ 
+    } else {
       scale(scale);
     }
-  
-  float stepHeight = 4;
-  stepSpeed += 0.2;
-  
-  float walk1 = sin(stepSpeed)*stepHeight;
-  float walk2 = cos(stepSpeed)*stepHeight;
-  
+
+    float stepHeight = 4;
+    stepSpeed += 0.2;
+
+    float walk1 = sin(stepSpeed)*stepHeight;
+    float walk2 = cos(stepSpeed)*stepHeight;
+
     fill(brown);
     rect(-56, -10 + walk1, 32, 83, 8, 8, 8, 8);    //leftest leg
     rect(-44, -10 + walk2, 32, 83, 8, 8, 8, 8);    //left leg
@@ -67,7 +67,7 @@ class Teddy {
     popMatrix();
   }
 
-  void move() {
+  void move(Farm farm) {
     float dx = farm.x - x;
     float dy = farm.y - y;
 
@@ -79,9 +79,20 @@ class Teddy {
     }
 
     if (dx >= 0) {
-      backwards = true; 
+      backwards = true;
     } else if (dx < 0) {
-      backwards = false; 
+      backwards = false;
+    }
+
+    for (Plot plot : farm.plots) {
+      if (x >= plot.x &&
+        x <= plot.x + plot.width &&
+        y >= plot.y &&
+        y <= plot.y + plot.height) {
+
+        farm.bearIntrusion(this);
+        break;
+      }
     }
   }
 
@@ -145,4 +156,3 @@ class Teddy {
     popMatrix();
   }
 }
-

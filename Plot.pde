@@ -5,8 +5,7 @@ class Plot {
 
   Plant[][] plants = new Plant[2][2];
 
-  final color BROWN = color(140, 90, 40),
-    DARKBROWN = color(120, 80, 30);
+  final color DARK_BROWN = color(120, 80, 30);
 
   color background;
 
@@ -27,7 +26,7 @@ class Plot {
 
   void makeFarm() {
     isFarmPlot = true;
-    background = DARKBROWN;
+    background = DARK_BROWN;
   }
 
   void display() {
@@ -38,7 +37,7 @@ class Plot {
     rect(x, y, width, height);
 
     if (isFarmPlot) {
-      fill(BROWN);
+      fill(DIRT_BROWN);
       noStroke();
       rect(x + width/18, y + width/18, width * 0.9, height * 0.9, 10);
 
