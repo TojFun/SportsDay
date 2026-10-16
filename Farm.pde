@@ -3,11 +3,18 @@ class Farm {
 
   int defenses = 0, hearts = 0;
 
-  Plot[][] plots;
+  ArrayList<Plot> plots;
 
   Farm(int xInit, int yInit) {
     x = xInit;
     y = yInit;
+
+    plots = new ArrayList<Plot>();
+  }
+
+  void addPlotToFarm(Plot plot) {
+    plot.makeFarm();
+    plots.add(plot);
   }
 
   void buyDefense() {
@@ -17,5 +24,8 @@ class Farm {
   }
 
   void buyPlant(Plant plat, Plot plot) {
+  }
+
+  void update() {
   }
 }

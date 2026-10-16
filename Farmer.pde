@@ -12,6 +12,9 @@ class Farmer {
   Farmer(float InitX, float InitY) {
     x = InitX;
     y = InitY;
+
+    targetX = x;
+    targetY = y;
   }
 
   void hugBear() {
