@@ -35,6 +35,7 @@ void draw() {
 
   farm.spawnBears(frameCount);
   farm.update();
+  farm.displayDefenses();
 }
 
 void mousePressed() {
