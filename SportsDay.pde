@@ -14,8 +14,8 @@ void setup() {
   bear = new Teddy(width/2, height/2, 1, 1);
   farm = new Farm(width /2, height/2);
 
-  theFarmer = new Farmer(0, 0);
-  healthBar = new HealthBar(10, 10, 200, 20);
+  theFarmer = new Farmer(width/2, height/2);
+  healthBar = new HealthBar(width/100, height/50, width/4, height/30);
 }
 
 void draw() {
@@ -26,6 +26,7 @@ void draw() {
       plot.display();
     }
   }
+
   theFarmer.display();
   theFarmer.update();
   healthBar.display();

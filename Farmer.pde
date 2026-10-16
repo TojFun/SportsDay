@@ -8,8 +8,6 @@ class Farmer {
   float walkTimer = 0;
   boolean isWalking;
 
-
-
   // Constructor
   Farmer(float InitX, float InitY) {
     x = InitX;
