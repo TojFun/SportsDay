@@ -32,7 +32,7 @@ void draw() {
 
   theFarmer.display();
   theFarmer.update();
-  hearthBar.display();
+  hearthBar.display(farm.hearts);
   farm.spawnBears(frameCount);
   farm.update();
 }

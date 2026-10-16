@@ -11,7 +11,7 @@ class Hearts {
     this.numHearts = numHearts;
   }
 
-  void display() {
+  void display(int hearts) {
     pushMatrix();
     pushStyle();
     translate(x, y);
@@ -30,9 +30,7 @@ class Hearts {
     textSize(20);
     fill(#151515);
     textFont(createFont("Arial", 30));
-    text(numHearts, x + 40, y + 20);
+    text(hearts, x + 40, y + 20);
   }
-  void getHearts() {
-    numHearts++;
-  }
+  
 }
