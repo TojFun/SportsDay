@@ -44,7 +44,6 @@ class Plot {
       for (Plant[] row : plants) {
         for (Plant plant : row) {
           plant.display();
-          plant.grow();
         }
       };
     }
