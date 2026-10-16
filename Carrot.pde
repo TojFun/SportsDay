@@ -8,7 +8,8 @@ class Carrot extends Plant {
   }
 
   void display() {
-
+    pushMatrix();
+    pushStyle();
     noStroke();
 
     // orange part
@@ -32,6 +33,9 @@ class Carrot extends Plant {
     translate(cx + 10*s, cy);
     rotate(0.4);
     ellipse(0, 0, 20*s, 40*s);
+    popMatrix();
+
+    popStyle();
     popMatrix();
   }
 }

@@ -14,7 +14,7 @@ class Plot {
 
     this.width = width;
     this.height = height;
-    
+
 
     this.canBeBought = canBeBought;
     this.isFarmPlot = isFarmPlot;
@@ -23,21 +23,27 @@ class Plot {
   }
 
   void display() {
+    pushMatrix();
+    pushStyle();
+
     fill(255%x, 255%y, 255);
     if (isFarmPlot) fill(DARKBROWN);
     rect(x, y, width, height);
 
-    if (!isFarmPlot) return;
+    if (isFarmPlot) {
+      fill(BROWN);
+      noStroke();
+      rect(x + width/18, y + width/18, width * 0.9, height * 0.9, 10);
 
-    fill(BROWN);
-    noStroke();
-    rect(x + width/18, y + width/18, width * 0.9, height * 0.9, 10);
+      for (Plant[] row : plants) {
+        for (Plant plant : row) {
+          plant.display();
+        }
+      };
+    }
 
-    for (Plant[] row : plants) {
-      for (Plant plant : row) {
-        plant.display();
-      }
-    };
+    popStyle();
+    popMatrix();
   }
 
   void initCarrots() {
