@@ -6,7 +6,7 @@ HealthBar healthBar;
 Hearts hearthBar;
 
 void setup() {
-size(960, 540);
+  size(960, 540);
 
   farm = new Farm(width /2, height/2);
   hearthBar = new Hearts(40, 50, 200, 20, 5);
@@ -28,7 +28,7 @@ void draw() {
   }
 
 
-    healthBar.display();
+  healthBar.display();
 
   theFarmer.display();
   theFarmer.update();
@@ -75,3 +75,4 @@ Plot[][] generatePlots(float width, float height) {
 
   return plots;
 }
+
