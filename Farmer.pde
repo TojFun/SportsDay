@@ -2,7 +2,7 @@ class Farmer {
   float targetX, targetY;
   float x, y;
   float angle;
-  float speed = 2;
+  float speed = 3.2;
   float leg1 = 10;
   float leg2 = 10;
   float walkTimer = 0;

@@ -2,6 +2,7 @@ Plot [][] plots;
 Teddy bear;
 Farm farm;
 Farmer farmer1;
+HealthBar healthBar;
 
 void setup() {
   size(960, 540);
@@ -9,6 +10,7 @@ void setup() {
   bear = new Teddy(width/2, height/2, 1);
   farm = new Farm(width /2, height/2);
   farmer1 = new Farmer(0,0);
+  healthBar = new HealthBar(10, 10, 200, 20);
 }
 
 void draw() {
@@ -21,7 +23,8 @@ void draw() {
   }
   farmer1.display();
   farmer1.update();
-
+  healthBar.display();
+  
   // bear.display();
   // farm.display();
 }
