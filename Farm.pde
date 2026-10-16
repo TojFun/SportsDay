@@ -36,6 +36,15 @@ class Farm {
     health--;
   }
 
+  boolean isHugging() {
+    for (Teddy bear : bears) {
+      if (bear.hugging) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   void spawnBears(int frameCount, Farmer farmer) {
     if (frameCount % 180 == 0) {
       spawnBear();
