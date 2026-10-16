@@ -29,18 +29,21 @@ void draw() {
     }
   }
 
+  farm.displayDefenses();
 
   healthBar.display(farm.health);
 
-  theFarmer.update();
+  if (!farm.isHugging()) {
+    theFarmer.update();
+  }
 
   farm.spawnBears(frameCount, theFarmer);
 
-  theFarmer.display();
+  if (!farm.isHugging()) {
+    theFarmer.display();
+  }
 
   hearthBar.display(farm.hearts);
-
-  farm.displayDefenses();
 }
 
 void mousePressed() {

@@ -95,10 +95,17 @@ class Teddy {
     }
 
     // Check whether farmer meets bear
-    if (dist(x, y, farmer.x, farmer.y) < 60) {
+    if (!farm.isHugging() &&
+      dist(x, y, farmer.x, farmer.y) < 60) {
+
       hugging = true;
       hugStartTime = millis();
       farm.hearts++;
+
+      farmer.targetX = farmer.x;
+      farmer.targetY = farmer.y;
+      farmer.isWalking = false;
+
       return;
     }
 
@@ -150,7 +157,9 @@ class Teddy {
 
   void hug() {
     pushMatrix();
-    translate(x - 400, y - 400);
+    translate(x, y);
+    scale(0.4);
+    translate(-400, -400);
 
     fill(brown);
     rect(353, 398, 32, 74, 8, 8, 8, 8);    //leftest leg
