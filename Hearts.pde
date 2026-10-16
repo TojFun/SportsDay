@@ -32,4 +32,7 @@ class Hearts {
     textFont(createFont("Arial", 30));
     text(numHearts, x + 40, y + 20);
   }
+  void getHearts() {
+    numHearts++;
+  }
 }
