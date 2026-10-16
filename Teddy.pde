@@ -2,7 +2,12 @@ class Teddy {
   float x, y, scale;
   int speed;
   float stepSpeed = 0;
+
   boolean backwards = false;
+  boolean hugging = false;
+  boolean leaving = false;
+  int hugStartTime;
+
   color brown = #A5674B;
   color yellow = #FFDFA0;
   color black = #3E2207;
@@ -19,12 +24,17 @@ class Teddy {
   }
 
   void display() {
+    if (hugging) {
+      hug();
+      return;
+    }
+
     pushMatrix();
 
     translate(x, y);
     if (backwards) {
       scale(-scale, scale);
-    } else{ 
+    } else {
       scale(scale);
     }
 
@@ -67,7 +77,32 @@ class Teddy {
     popMatrix();
   }
 
-  void move(Farm farm) {
+  void move(Farm farm, Farmer farmer) {
+
+    // Bear is leaving after hugging
+    if (leaving) {
+      goAway();
+      return;
+    }
+
+    // Bear is currently hugging
+    if (hugging) {
+      if (millis() - hugStartTime >= 900) {
+        hugging = false;
+        leaving = true;
+      }
+      return;
+    }
+
+    // Check whether farmer meets bear
+    if (dist(x, y, farmer.x, farmer.y) < 60) {
+      hugging = true;
+      hugStartTime = millis();
+      farm.hearts++;
+      return;
+    }
+
+    // Normal bear movement toward farm
     float dx = farm.x - x;
     float dy = farm.y - y;
 
@@ -80,10 +115,11 @@ class Teddy {
 
     if (dx >= 0) {
       backwards = true;
-    } else if (dx < 0) {
+    } else {
       backwards = false;
     }
 
+    // Check whether bear reaches a farm plot
     for (Plot plot : farm.plots) {
       if (x >= plot.x &&
         x <= plot.x + plot.width &&
@@ -96,13 +132,26 @@ class Teddy {
     }
   }
 
-  void attackFarm(Farm farm) {
-  }
-
   void goAway() {
+    float dx = x - width / 2.0;
+    float dy = y - height / 2.0;
+    float distance = sqrt(dx * dx + dy * dy);
+
+    if (distance < 0.001) {
+      dx = 1;
+      dy = 0;
+      distance = 1;
+    }
+
+    x += (dx / distance) * 4;
+    y += (dy / distance) * 4;
+    backwards = dx > 0;
   }
 
   void hug() {
+    pushMatrix();
+    translate(x - 400, y - 400);
+
     fill(brown);
     rect(353, 398, 32, 74, 8, 8, 8, 8);    //leftest leg
     circle(450, 412, 33);                  //tail
@@ -153,6 +202,7 @@ class Teddy {
     translate(400, 400);
     rotate(radians(-11));
     ellipse(28, -27, 79, 35);              //right arm
+    popMatrix();
     popMatrix();
   }
 }

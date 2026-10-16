@@ -34,15 +34,28 @@ class Farm {
     health--;
   }
 
-  void spawnBears(int frameCount) {
+  void spawnBears(int frameCount, Farmer farmer) {
     if (frameCount % 180 == 0) {
       spawnBear();
     }
 
     for (int i = bears.size() - 1; i >= 0; i--) {
       Teddy bear = bears.get(i);
+
+      bear.move(this, farmer);
+      if (!bears.contains(bear)) {
+        continue;
+      }
+
       bear.display();
-      bear.move(this);
+
+      // Remove bear once it has left the screen
+      if (bear.leaving &&
+        (bear.x < -120 || bear.x > width + 120 ||
+        bear.y < -120 || bear.y > height + 120)) {
+
+        bears.remove(i);
+      }
     }
   }
 
@@ -84,7 +97,7 @@ class Farm {
     bears.add(bear);
   }
 
-void displayDefenses() {
+  void displayDefenses() {
     float t = 8;
 
     pushStyle();
