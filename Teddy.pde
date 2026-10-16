@@ -2,6 +2,7 @@ class Teddy {
   float x, y, scale;
   int speed;
   float stepSpeed = 0;
+  boolean backwards = false;
   color brown = #A5674B;
   color yellow = #FFDFA0;
   color black = #3E2207;
@@ -21,14 +22,18 @@ class Teddy {
     pushMatrix();
 
     translate(x, y);
-    scale(scale);
-
-    float stepHeight = 4;
-    stepSpeed += 0.2;
-
-    float walk1 = sin(stepSpeed)*stepHeight;
-    float walk2 = cos(stepSpeed)*stepHeight;
-
+    if(backwards) {
+      scale(-1, 1);
+    } else{ 
+      scale(scale);
+    }
+  
+  float stepHeight = 4;
+  stepSpeed += 0.2;
+  
+  float walk1 = sin(stepSpeed)*stepHeight;
+  float walk2 = cos(stepSpeed)*stepHeight;
+  
     fill(brown);
     rect(-56, -10 + walk1, 32, 83, 8, 8, 8, 8);    //leftest leg
     rect(-44, -10 + walk2, 32, 83, 8, 8, 8, 8);    //left leg
@@ -71,6 +76,12 @@ class Teddy {
     if (distance > speed) {
       x += dx / distance * speed;
       y += dy / distance * speed;
+    }
+
+    if (dx >= 0) {
+      backwards = true; 
+    } else if (dx < 0) {
+      backwards = false; 
     }
   }
 
