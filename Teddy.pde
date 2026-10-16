@@ -25,7 +25,7 @@ class Teddy {
     if(backwards) {
       scale(-1, 1);
     } else{ 
-      scale(scale);
+      scale(scale, scale);
     }
   
   float stepHeight = 4;
