@@ -10,7 +10,7 @@ class Carrot extends Plant {
 
     this.stage = stage;
   }
-  void grow() { // timer flow 
+  void grow() { // timer flow
     if (stage < 3 && millis() - lastGrowTime >= 10000) {
       stage++;
       lastGrowTime = millis();
@@ -59,3 +59,4 @@ class Carrot extends Plant {
     popMatrix();
   }
 }
+

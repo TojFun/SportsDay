@@ -32,5 +32,5 @@ class Hearts {
     textFont(createFont("Arial", 30));
     text(hearts, x + 40, y + 20);
   }
-  
 }
+
