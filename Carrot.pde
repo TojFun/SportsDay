@@ -1,6 +1,8 @@
 class Carrot extends Plant {
   float cx, cy, s;
   int stage;
+  int lastGrowTime = 0;
+  int test ;
 
   Carrot(float cx, float cy, float s, int stage) {
     this.cx = cx;
@@ -9,7 +11,12 @@ class Carrot extends Plant {
 
     this.stage = stage;
   }
-
+  void grow() {
+    if (stage < 3 && millis() - lastGrowTime >= 10000) {
+      stage++;
+      lastGrowTime = millis();
+    }
+  }
   void display() {
     int stageOffset = stage == 1 ? 50: stage == 2 ? 30 :0;
 
