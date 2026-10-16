@@ -27,7 +27,11 @@ class Farm {
   void buyPlant(Plant plat, Plot plot) {
   }
 
-  void update() {
+  void bearIntrusion(Teddy bear, Plot plot) {
+    bears.remove(bear);
+    plot.removePlant();
+
+    health--;
   }
 
   void spawnBears(int frameCount) {
@@ -35,9 +39,10 @@ class Farm {
       spawnBear();
     }
 
-    for (Teddy bear : bears) {
+    for (int i = bears.size() - 1; i >= 0; i--) {
+      Teddy bear = bears.get(i);
       bear.display();
-      bear.move();
+      bear.move(this);
     }
   }
 
