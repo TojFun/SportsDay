@@ -14,6 +14,7 @@ class Plot {
 
     this.width = width;
     this.height = height;
+    
 
     this.canBeBought = canBeBought;
     this.isFarmPlot = isFarmPlot;

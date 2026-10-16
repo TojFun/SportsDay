@@ -1,12 +1,14 @@
 Plot [][] plots;
 Teddy bear;
 Farm farm;
+Farmer farmer1;
 
 void setup() {
   size(960, 540);
   plots = generatePlots(width, height);
   bear = new Teddy(width/2, height/2, 1);
   farm = new Farm(width /2, height/2);
+  farmer1 = new Farmer(0,0);
 }
 
 void draw() {
@@ -17,9 +19,16 @@ void draw() {
       plot.display();
     }
   }
+  farmer1.display();
+  farmer1.update();
 
   // bear.display();
   // farm.display();
+}
+
+void mousePressed() {
+  farmer1.hugBear();
+  farmer1.isWalking = true;
 }
 
 Plot[][] generatePlots(float width, float height) {
