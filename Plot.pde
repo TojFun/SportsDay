@@ -13,4 +13,9 @@ class Plot {
 
     this.canBeBought = canBeBought;
   }
+
+  void display() {
+    fill(255%x, 255%y, 255);
+    rect(x, y, width, height);
+  }
 }
