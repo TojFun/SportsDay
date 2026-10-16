@@ -9,13 +9,14 @@ ArrayList<Teddy> bears = new ArrayList<Teddy>();
 
 void setup() {
   size(960, 540);
-  plots = generatePlots(width, height);
 
   bear = new Teddy(width/2, height/2, 1, 1);
   farm = new Farm(width /2, height/2);
 
   theFarmer = new Farmer(width/2, height/2);
   healthBar = new HealthBar(width/100, height/50, width/4, height/30);
+
+  plots = generatePlots(width, height);
 }
 
 void draw() {
@@ -73,7 +74,11 @@ Plot[][] generatePlots(float width, float height) {
         j >= (plots[i].length - farmY) / 2 &&
         j < (plots[i].length + farmY) / 2;
 
-      plots[i][j] = new Plot(i, j, theWidth, theHeight, canBeBought, isFarmPlot);
+      Plot plot = new Plot(i, j, theWidth, theHeight, canBeBought);
+
+      plots[i][j] = plot;
+
+      if (isFarmPlot) farm.addPlotToFarm(plot);
     }
   }
 
