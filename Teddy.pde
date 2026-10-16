@@ -23,8 +23,8 @@ class Teddy {
 
     translate(x, y);
     if (backwards) {
-      scale(-1, 1);
-    } else {
+      scale(-scale, scale);
+    } else{ 
       scale(scale);
     }
 

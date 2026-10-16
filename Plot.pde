@@ -46,7 +46,6 @@ class Plot {
           if (plant == null ) continue;
 
           plant.display();
-          plant.grow();
         }
       };
     }
