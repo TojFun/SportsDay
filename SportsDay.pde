@@ -3,6 +3,7 @@ Teddy bear;
 Farm farm;
 Farmer theFarmer;
 HealthBar healthBar;
+Hearts hearthBar;
 
 
 ArrayList<Teddy> bears = new ArrayList<Teddy>();
@@ -14,6 +15,7 @@ void setup() {
   farm = new Farm(width /2, height/2);
   theFarmer = new Farmer(0,0);
   healthBar = new HealthBar(10, 10, 200, 20);
+  hearthBar = new Hearts(40, 50, 200, 20, 5);
 }
 
 void draw() {
@@ -27,6 +29,7 @@ void draw() {
   theFarmer.display();
   theFarmer.update();
     healthBar.display();
+    hearthBar.display();
 
 
   if (frameCount % 180 == 0) {

@@ -47,7 +47,7 @@ class Farmer {
     pushMatrix();
     pushStyle();
 
-    stroke(126);
+    stroke(#151515);
     strokeWeight(2);
     translate(x, y);
     rotate(HALF_PI);
