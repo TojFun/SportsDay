@@ -28,6 +28,9 @@ class Farm { // This is the main class of the game, where all variables are.
     }
   }
 
+  /* Did not have enough time to implement buying plots and planting.
+   There are a few remanents of those ideas throughout the program. */
+
   void buyPlot(Plot plot) {
   }
 
