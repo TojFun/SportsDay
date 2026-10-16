@@ -1,11 +1,14 @@
 class Teddy {
   float x, y, scale;
+  int speed;
 
-  Teddy(float x, float y, float scale) {
+  Teddy(float x, float y, float scale, int speed) {
     this.x = x;
     this.y = y;
 
     this.scale = scale;
+
+    this.speed = speed;
   }
 
   void display() {
@@ -50,6 +53,18 @@ class Teddy {
     circle(-53, -29, 9);      //right
 
     popMatrix();
+  }
+
+  void move() {
+    float dx = farm.x - x;
+    float dy = farm.y - y;
+
+    float distance = sqrt(dx * dx + dy * dy);
+
+    if (distance > speed) {
+      x += dx / distance * speed;
+      y += dy / distance * speed;
+    }
   }
 
   void attackFarm(Farm farm) {

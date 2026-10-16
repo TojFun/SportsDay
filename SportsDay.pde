@@ -1,15 +1,18 @@
 Plot [][] plots;
 Teddy bear;
 Farm farm;
-Farmer farmer1;
+Farmer theFarmer;
 HealthBar healthBar;
+
+
+ArrayList<Teddy> bears = new ArrayList<Teddy>();
 
 void setup() {
   size(960, 540);
   plots = generatePlots(width, height);
-  bear = new Teddy(width/2, height/2, 1);
+  bear = new Teddy(width/2, height/2, 1, 1);
   farm = new Farm(width /2, height/2);
-  farmer1 = new Farmer(0,0);
+  theFarmer = new Farmer(0,0);
   healthBar = new HealthBar(10, 10, 200, 20);
 }
 
@@ -21,17 +24,24 @@ void draw() {
       plot.display();
     }
   }
-  farmer1.display();
-  farmer1.update();
-  healthBar.display();
-  
-  // bear.display();
-  // farm.display();
+  theFarmer.display();
+  theFarmer.update();
+    healthBar.display();
+
+
+  if (frameCount % 180 == 0) {
+    spawnBear();
+  }
+
+  for (Teddy bear : bears) {
+    bear.display();
+    bear.move();
+  }
 }
 
 void mousePressed() {
-  farmer1.hugBear();
-  farmer1.isWalking = true;
+  theFarmer.hugBear();
+  theFarmer.isWalking = true;
 }
 
 Plot[][] generatePlots(float width, float height) {
@@ -62,4 +72,42 @@ Plot[][] generatePlots(float width, float height) {
   }
 
   return plots;
+}
+
+void spawnBear() {
+  float x = 0;
+  float y = 0;
+  float offset = 100;
+
+  // Choose a random side of the screen
+  int side = int(random(4));
+
+  switch (side) {
+  case 0: // Top
+    x = random(width);
+    y = -offset;
+    break;
+
+  case 1: // Right
+    x = width + offset;
+    y = random(height);
+    break;
+
+  case 2: // Bottom
+    x = random(width);
+    y = height + offset;
+    break;
+
+  case 3: // Left
+    x = -offset;
+    y = random(height);
+    break;
+  }
+
+  // Random size, but not too small or large
+  float bearSize = random(0.5, 0.85);
+
+  Teddy bear = new Teddy(x, y, bearSize, 1);
+
+  bears.add(bear);
 }
