@@ -11,7 +11,7 @@ class Plot {
   color background;
 
 
-  Plot(float x, float y, float width, float height, boolean canBeBought, boolean isFarmPlot) {
+  Plot(float x, float y, float width, float height, boolean canBeBought) {
     this.x = x * width;
     this.y = y * height;
 
@@ -19,10 +19,15 @@ class Plot {
     this.height = height;
 
     this.canBeBought = canBeBought;
-    this.isFarmPlot = isFarmPlot;
+    background = color(random(75, 90), random(125, 145), random(45, 60));
 
-    background = isFarmPlot ? DARKBROWN : color(random(75, 90), random(125, 145), random(45, 60));
+
     initCarrots();
+  }
+
+  void makeFarm() {
+    isFarmPlot = true;
+    background = DARKBROWN;
   }
 
   void display() {
@@ -40,6 +45,7 @@ class Plot {
       for (Plant[] row : plants) {
         for (Plant plant : row) {
           plant.display();
+          plant.grow();
         }
       };
     }
