@@ -90,7 +90,7 @@ class Teddy {
         y >= plot.y &&
         y <= plot.y + plot.height) {
 
-        farm.bearIntrusion(this);
+        farm.bearIntrusion(this, plot);
         break;
       }
     }

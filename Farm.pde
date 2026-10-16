@@ -27,8 +27,10 @@ class Farm {
   void buyPlant(Plant plat, Plot plot) {
   }
 
-  void bearIntrusion(Teddy bear) {
+  void bearIntrusion(Teddy bear, Plot plot) {
     bears.remove(bear);
+    plot.removePlant();
+
     health--;
   }
 
