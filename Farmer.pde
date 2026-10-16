@@ -8,12 +8,13 @@ class Farmer {
   float walkTimer = 0;
   boolean isWalking;
 
-
-
   // Constructor
   Farmer(float InitX, float InitY) {
     x = InitX;
     y = InitY;
+
+    targetX = x;
+    targetY = y;
   }
 
   void hugBear() {
