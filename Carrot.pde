@@ -2,6 +2,7 @@ class Carrot extends Plant {
   float cx, cy, s;
   int stage;
   int lastGrowTime = 0;
+  int test ;
 
   Carrot(float cx, float cy, float s, int stage) {
     this.cx = cx;
