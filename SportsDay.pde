@@ -1,8 +1,10 @@
 Plot [][] plots;
+Teddy bear;
 
 void setup() {
   size(960, 540);
   plots = generatePlots(width, height);
+  bear = new Teddy(width/2, height/2, 1);
 }
 
 void draw() {
@@ -13,6 +15,8 @@ void draw() {
       plot.display();
     }
   }
+
+  bear.display();
 }
 
 Plot[][] generatePlots(float width, float height) {
