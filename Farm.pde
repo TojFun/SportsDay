@@ -1,7 +1,7 @@
 class Farm {
   float x, y ;
 
-  int defenses = 0, hearts = 0, health = 100;
+  int defenses = 0, hearts = 0, health = 16;
 
   ArrayList<Plot> plots;
   ArrayList<Teddy> bears = new ArrayList<Teddy>();
