@@ -36,6 +36,11 @@ void draw() {
   theFarmer.update();
   hearthBar.display(farm.hearts);
   farm.spawnBears(frameCount);
+<<<<<<< HEAD
+  farm.update();
+  farm.displayDefenses();
+=======
+>>>>>>> f2adc463c8d8a37cfbd6a5acaabf50d67733e50c
 }
 
 void mousePressed() {

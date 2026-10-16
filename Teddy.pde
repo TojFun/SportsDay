@@ -23,8 +23,8 @@ class Teddy {
 
     translate(x, y);
     if (backwards) {
-      scale(-1, 1);
-    } else {
+      scale(-scale, scale);
+    } else{ 
       scale(scale);
     }
 
@@ -90,7 +90,7 @@ class Teddy {
         y >= plot.y &&
         y <= plot.y + plot.height) {
 
-        farm.bearIntrusion(this);
+        farm.bearIntrusion(this, plot);
         break;
       }
     }

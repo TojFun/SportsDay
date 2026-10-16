@@ -27,8 +27,10 @@ class Farm {
   void buyPlant(Plant plat, Plot plot) {
   }
 
-  void bearIntrusion(Teddy bear) {
+  void bearIntrusion(Teddy bear, Plot plot) {
     bears.remove(bear);
+    plot.removePlant();
+
     health--;
   }
 
@@ -80,5 +82,38 @@ class Farm {
     Teddy bear = new Teddy(x, y, bearSize, 1);
 
     bears.add(bear);
+  }
+
+void displayDefenses() {
+    float t = 8;
+
+    pushStyle();
+    rectMode(CORNER);
+    stroke(0);
+    fill(110, 110, 130);
+
+    for (Plot plot : plots) {
+      if (!hasPlot(plot.x, plot.y - plot.height)) {
+        rect(plot.x - t, plot.y - t, plot.width + 2*t, t);
+      }
+      if (!hasPlot(plot.x, plot.y + plot.height)) {
+        rect(plot.x - t, plot.y + plot.height, plot.width + 2*t, t);
+      }
+      if (!hasPlot(plot.x - plot.width, plot.y)) {
+        rect(plot.x - t, plot.y, t, plot.height);
+      }
+      if (!hasPlot(plot.x + plot.width, plot.y)) {
+        rect(plot.x + plot.width, plot.y, t, plot.height);
+      }
+    }
+
+    popStyle();
+  }
+
+  boolean hasPlot(float px, float py) {
+    for (Plot other : plots) {
+      if (abs(other.x - px) < 1 && abs(other.y - py) < 1) return true;
+    }
+    return false;
   }
 }

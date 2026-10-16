@@ -43,8 +43,9 @@ class Plot {
 
       for (Plant[] row : plants) {
         for (Plant plant : row) {
+          if (plant == null ) continue;
+
           plant.display();
-          plant.grow();
         }
       };
     }
@@ -60,5 +61,18 @@ class Plot {
     plants[0][1] = new Carrot(centerX + width / 5, centerY - height / 4, 0.25, 1);
     plants[1][0] = new Carrot(centerX - width / 5, centerY + height / 4, 0.25, 1);
     plants[1][1] = new Carrot(centerX + width / 5, centerY + height / 4, 0.25, 1);
+  }
+
+  void removePlant() {
+    boolean shouldBreak = false;
+    for (int i = 0; !shouldBreak && i < plants.length; i++) {
+      for (int j = 0; j < plants[i].length; j++) {
+        if (plants[i][j] != null) {
+          plants[i][j] = null;
+          shouldBreak = true;
+          break;
+        }
+      }
+    }
   }
 }
