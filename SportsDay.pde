@@ -1,3 +1,6 @@
+
+final color DIRT_BROWN = color(140, 90, 40);
+
 Plot [][] plots;
 Teddy bear;
 Farm farm;
@@ -9,8 +12,7 @@ void setup() {
   size(960, 540);
 
   farm = new Farm(width /2, height/2);
-  hearthBar = new Hearts(40, 50, 200, 20, 5);
-
+  hearthBar = new Hearts(40, 50, 200, 20, 0);
 
   theFarmer = new Farmer(width/2, height/2);
   healthBar = new HealthBar(width/100, height/50, width/4, height/30);
@@ -32,9 +34,8 @@ void draw() {
 
   theFarmer.display();
   theFarmer.update();
-
+  hearthBar.display(farm.hearts);
   farm.spawnBears(frameCount);
-  farm.update();
 }
 
 void mousePressed() {
@@ -75,4 +76,3 @@ Plot[][] generatePlots(float width, float height) {
 
   return plots;
 }
-
