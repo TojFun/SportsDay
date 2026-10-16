@@ -1,4 +1,4 @@
-class Farm {
+class Farm { // This is the main class of the game, where all variables are.
   float x, y ;
 
   int defenses = 0, hearts = 0, health = 16;
@@ -21,9 +21,10 @@ class Farm {
   }
 
   void buyDefense() {
-    if (hearts > 15 && defenses == 0) {
+    if (hearts >= 15 && defenses == 0) {
       hearts -= 15;
       defenses = 1;
+      wallHealth.clear();
     }
   }
 
@@ -180,6 +181,23 @@ class Farm {
         float[] w = wallRect(plot, side);
         if (bear.x > w[0] - r && bear.x < w[0] + w[2] + r && bear.y > w[1] - r && bear.y < w[1] + w[3] + r) {
           wallHealth.sub(key, 0.5);
+
+          if (getWallHealth(key) <= 0) {
+            boolean wallsLeft = false;
+
+            for (Plot p : plots) {
+              for (int s = 0; s < 4; s++) {
+                if (sideIsOpen(p, s) && getWallHealth(wallKey(p, s)) > 0) {
+                  wallsLeft = true;
+                }
+              }
+            }
+
+            if (!wallsLeft) {
+              defenses = 0;
+            }
+          }
+
           return true;
         }
       }

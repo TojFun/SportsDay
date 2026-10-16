@@ -9,7 +9,6 @@ class Plot {
 
   color background;
 
-
   Plot(float x, float y, float width, float height, boolean canBeBought) {
     this.x = x * width;
     this.y = y * height;
@@ -72,6 +71,22 @@ class Plot {
           plants[i][j] = null;
           shouldBreak = true;
           break;
+        }
+      }
+    }
+  }
+
+  void regrowPlants() {
+    float centerX = x + width/2;
+    float centerY = y + height/2.5;
+
+    for (int i = 0; i < 2; i++) {
+      for (int j = 0; j < 2; j++) {
+        if (plants[i][j] == null && random(1) < 0.2) {
+          float plantX = centerX + (j == 0 ? -width/5 : width/5);
+          float plantY = centerY + (i == 0 ? -height/4 : height/4);
+
+          plants[i][j] = new Carrot(plantX, plantY, 0.25, 1);
         }
       }
     }

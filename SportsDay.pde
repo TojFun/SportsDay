@@ -1,3 +1,11 @@
+/*
+ Names:
+ Ofek Yacobi
+ Mats de Greef
+ David Orozco Escobar
+ Xueting Lin
+ */
+
 
 final color DIRT_BROWN = color(140, 90, 40);
 
@@ -21,11 +29,13 @@ void setup() {
 }
 
 void draw() {
-  // rect(200, 200, 40, 40) ;
-
   for (Plot[] row : plots) {
     for (Plot plot : row) {
       plot.display();
+
+      if (plot.isFarmPlot && frameCount % 180 == 0) {
+        plot.regrowPlants();
+      }
     }
   }
 
@@ -75,7 +85,7 @@ void keyPressed() {
   }
 }
 
-Plot[][] generatePlots(float width, float height) {
+Plot[][] generatePlots(float width, float height) { // The building blocks of the game
   Plot [][] plots = new Plot[16][12];
 
   float theWidth = width / plots.length;
