@@ -1,10 +1,14 @@
 class Plot {
   float x, y, width, height;
   boolean canBeBought;
+  boolean isFarmPlot;
 
   Plant[][] plants = new Plant[2][2];
 
-  Plot(float x, float y, float width, float height, boolean canBeBought) {
+  final color BROWN = color(140, 90, 40),
+    DARKBROWN = color(120, 80, 30);
+
+  Plot(float x, float y, float width, float height, boolean canBeBought, boolean isFarmPlot) {
     this.x = x * width;
     this.y = y * height;
 
@@ -12,10 +16,35 @@ class Plot {
     this.height = height;
 
     this.canBeBought = canBeBought;
+    this.isFarmPlot = isFarmPlot;
+
+    initCarrots();
   }
 
   void display() {
     fill(255%x, 255%y, 255);
+    if (isFarmPlot) fill(DARKBROWN);
     rect(x, y, width, height);
+
+    if (!isFarmPlot) return;
+
+    fill(BROWN);
+    noStroke();
+    rect(x + width/18, y + width/18, width * 0.9, height * 0.9, 10);
+
+    for (Plant[] row : plants) {
+      for (Plant plant : row) {
+        plant.display();
+      }
+    };
+  }
+
+  void initCarrots() {
+    float rowY = y + height/9;
+
+    plants[0][0] = new Carrot(x - width/9, rowY, 0.25);
+    plants[0][1] = new Carrot(x + width/9, rowY, 0.25);
+    plants[1][0] = new Carrot(x - width/9, rowY+height/4, 0.25);
+    plants[1][1] = new Carrot(x + width/9, rowY+height/4, 0.25);
   }
 }

@@ -1,11 +1,13 @@
 class Farm {
-  int defenses = 0;
-  int hearts = 0;
-  //   float x,y;
+  float x, y ;
 
-  ArrayList<Plot> plots;
+  int defenses = 0, hearts = 0;
 
-  Farm() {
+  Plot[][] plots;
+
+  Farm(int xInit, int yInit) {
+    x = xInit;
+    y = yInit;
   }
 
   void buyDefense() {
@@ -15,8 +17,5 @@ class Farm {
   }
 
   void buyPlant(Plant plat, Plot plot) {
-  }
-
-  void display() {
   }
 }
