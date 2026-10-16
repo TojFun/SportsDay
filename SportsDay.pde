@@ -10,10 +10,12 @@ ArrayList<Teddy> bears = new ArrayList<Teddy>();
 void setup() {
   size(960, 540);
   plots = generatePlots(width, height);
+
   bear = new Teddy(width/2, height/2, 1, 1);
   farm = new Farm(width /2, height/2);
-  theFarmer = new Farmer(0,0);
-  healthBar = new HealthBar(10, 10, 200, 20);
+
+  theFarmer = new Farmer(width/2, height/2);
+  healthBar = new HealthBar(width/100, height/50, width/4, height/30);
 }
 
 void draw() {
@@ -24,9 +26,10 @@ void draw() {
       plot.display();
     }
   }
+
   theFarmer.display();
   theFarmer.update();
-    healthBar.display();
+  healthBar.display();
 
 
   if (frameCount % 180 == 0) {
@@ -37,6 +40,9 @@ void draw() {
     bear.display();
     bear.move();
   }
+
+  theFarmer.display();
+  theFarmer.update();
 }
 
 void mousePressed() {
@@ -105,7 +111,7 @@ void spawnBear() {
   }
 
   // Random size, but not too small or large
-  float bearSize = random(0.5, 0.85);
+  float bearSize = random(0.25, 0.75);
 
   Teddy bear = new Teddy(x, y, bearSize, 1);
 
